@@ -1,0 +1,39 @@
+{{#section 'head'}} 
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.js"></script>
+		<script id="customerTemplate" type="text/x-handlebars-template">  
+			 First Name <b>\{{fn}}</b> Surname <b>\{{sn}}</b>    
+			 NINO <b>\{{nino}}</b> Age <b>\{{age}}</b>. 
+		</script> 
+{{/section}} 
+			<div id="customerDiv">Click a button....</div> <hr>
+			<button id="btnCustomerA">Generate Customer A</button> 
+			<button id="btnAjax">Generate AJAX</button>
+{{#section 'jquery'}} 
+		<script> 
+			$(document).ready(function(){
+				var customerTemplate = Handlebars.compile( $('#customerTemplate').html());
+				var $customerDiv = $('#customerDiv');
+				
+				$('#btnCustomerA').on('click', function(evt){  
+				   evt.preventDefault(); 
+				   $customerDiv.html(customerTemplate({  
+						fn: 'paul',  
+						sn: 'anderson',    
+						nino: 'ab909090a',  
+						age: 24    
+					}));           
+				});
+				
+				$('#btnAjax').on('click', function(evt){ 
+					evt.preventDefault();       
+					$.ajax('/data/customer', {   
+						success: function(data){ 
+								   $customerDiv.html(customerTemplate(data));     
+								 }                         
+				   });                       
+				});
+			});     
+		</script>
+{{/section}}
+	   
+	   

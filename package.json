@@ -9,6 +9,7 @@
   "author": "Paul",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.10.1",
     "express": "^4.11.0",
     "express3-handlebars": "^0.5.2"
   },
